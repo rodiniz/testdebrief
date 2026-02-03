@@ -1,0 +1,47 @@
+<div class="show-token-container">
+  <h2>Token Information</h2>
+  
+  <div class="info-section">
+    <h3>Access Token</h3>
+    <div class="token-display">
+      <div class="token-value">
+        @if (token()) {
+          <code>{{ token() }}</code>
+        } @else {
+          <p class="no-data">No token available</p>
+        }
+      </div>
+      @if (token()) {
+        <button class="copy-button" (click)="copyToken()" [disabled]="tokenCopied()">
+          @if (tokenCopied()) {
+            ✓ Copied!
+          } @else {
+            Copy Token
+          }
+        </button>
+      }
+    </div>
+  </div>
+
+  <div class="info-section">
+    <h3>Device ID</h3>
+    <div class="token-display">
+      <div class="token-value">
+        @if (deviceId()) {
+          <code>{{ deviceId() }}</code>
+        } @else {
+          <p class="no-data">No device ID available</p>
+        }
+      </div>
+      @if (deviceId()) {
+        <button class="copy-button" (click)="copyDeviceId()" [disabled]="deviceIdCopied()">
+          @if (deviceIdCopied()) {
+            ✓ Copied!
+          } @else {
+            Copy Device ID
+          }
+        </button>
+      }
+    </div>
+  </div>
+</div>

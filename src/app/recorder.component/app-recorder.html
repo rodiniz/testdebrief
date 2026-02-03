@@ -1,0 +1,54 @@
+
+<div class="parent">
+    <div class="card " >
+        <div class="input-container">
+            <label for="sasUrl">SAS URL:</label>
+            <input 
+                id="sasUrl" 
+                type="text" 
+                [value]="sasUrl()" 
+                (input)="sasUrl.set($any($event.target).value)"
+                placeholder="Paste your SAS URL here..."
+                class="sas-input"
+            />
+        </div>
+        
+        <div class="button-container">          
+            @if(!isRecordStarted()){
+                <button class="start-btn" (click)="handleStart()"><i class="fas fa-play"></i> Start</button>
+            }
+            @if(isRecordStarted() && !isRecordPaused()){
+                <button class="pause-btn" (click)="handlePause()"><i class="fas fa-pause"></i> Pause</button>
+            }
+            @if(isRecordStarted() && isRecordPaused()){
+                <button class="pause-btn" (click)="handleResume()"><i class="fas fa-play-circle"></i> Resume</button>
+            }
+            <button [disabled]="!isRecordStarted() && !isRecordPaused()" class="stop-btn" (click)="handleStop()"><i class="fas fa-stop"></i> Stop</button>
+            <button class="load-btn bg-blue-500 text-white" (click)="loadAudioToPlayer()">
+                <i class="fas fa-download"></i> Load Audio
+            </button>
+        
+        </div>
+        
+        <div class="volume-meter-container">
+            <label><i class="fas fa-volume-high text-2xl"></i> Volume Level</label>
+            <div class="volume-meter">
+                <div class="volume-bar" [style.width.%]="volume()"></div>
+            </div>
+            <span class="volume-text">{{ volume().toFixed(0) }}%</span>
+        </div>
+        
+        <div class="logs-container">
+            <h3>Logs</h3>
+            <div class="logs-content">
+                @for (log of logs(); track $index) {
+                    <div class="log-entry">{{ log }}</div>
+                }            
+            </div>  
+        </div>
+        <div style="margin-top: 10px;">
+         <audio controls preload="metadata"></audio>       
+        </div>
+    </div>
+</div>
+ 

@@ -1,0 +1,54 @@
+<div class="p-6 flex justify-center">
+  <div class="w-full max-w-7xl bg-white rounded-lg shadow-md overflow-hidden">
+    <!-- Card Header -->
+    <div class="bg-linear-to-r from-blue-500 to-purple-600 p-6">
+      <h2 class="text-white text-2xl font-semibold m-0">Recordings</h2>
+    </div>
+    
+    <!-- Card Body -->
+    <div class="p-6">
+     
+
+      <table class="w-full border-collapse">
+        <thead class="bg-gray-100">
+          <tr>
+             <th class="text-left px-4 py-3 font-semibold text-gray-800 border-b border-gray-200">Recordin Id</th>
+             <th class="text-left px-4 py-3 font-semibold text-gray-800 border-b border-gray-200">Title</th>
+             <th class="text-left px-4 py-3 font-semibold text-gray-800 border-b border-gray-200">Status</th>
+             <th colspan="5"></th>
+            
+          </tr>
+        </thead>
+        <tbody>
+          @for (recording of recordings(); track $index) {
+            <tr class="hover:bg-gray-50">
+               <td class="px-4 py-3 border-b border-gray-200">{{recording.recordingId}} </td>   
+              <td class="px-4 py-3 border-b border-gray-200">{{recording.title}}</td>   
+              <td class="px-4 py-3 border-b border-gray-200">{{recording.status}}</td>   
+               <td class="px-4 py-3 border-b border-gray-200 gap-2">
+                  <button class="w-8/12 shadow-2xs bg-blue-500 text-white cursor-pointer rounded bg-linear-to-r from-cyan-500 via-blue-500 to-blue-950" (click)="testDownload(recording.recordingId)">
+                    <i class="fas fa-download"></i> Download document
+                </button>
+                </td>
+                <td>
+                 <button class="ml-3 w-8/12 shadow-2xs bg-blue-500 text-white cursor-pointer rounded bg-linear-to-r from-cyan-500 via-blue-500 to-blue-950" (click)="createMeetingMinutes(recording.recordingId)">
+                    <i class="fas fa-download"></i> Create meeting minutes
+                </button>
+                </td>
+                <td>
+                  <button class="ml-3 w-8/12 shadow-2xs bg-blue-500 text-white cursor-pointer rounded bg-linear-to-r from-cyan-500 via-blue-500 to-blue-950" (click)="createSummary(recording.recordingId)">
+                    <i class="fas fa-download"></i> Create summary
+                  </button>
+              </td>
+              <td>
+                  <button class="ml-3 w-8/12 shadow-2xs bg-blue-500 text-white cursor-pointer rounded bg-linear-to-r from-cyan-500 via-blue-500 to-blue-950" (click)="getSubjects(recording.recordingId)">
+                    <i class="fas fa-download"></i> GetSubjects
+                  </button>
+               </td> 
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
