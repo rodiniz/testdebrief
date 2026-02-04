@@ -1,5 +1,6 @@
 import { BlockBlobClient, newPipeline } from "@azure/storage-blob";
 import { CustomClient } from "./CustomClient";
+import { metadata } from "@angular/forms/signals";
 
 interface Recording { 
   blockIds: string[];
@@ -137,7 +138,10 @@ export class ResumableRecorder {
    }
   private async commitBlocks() {     
      this.updateData(`Comitting ${this.state.blockIds.length}`);
-     const ret=await this.blockBlobClient!.commitBlockList(this.state.blockIds);
+     const options = {
+      metadata: { "lang": "du" }
+    };
+     const ret=await this.blockBlobClient!.commitBlockList(this.state.blockIds,options);
      this.updateData(`Finished comitting  ${ret._response.status}`);    
   }
 

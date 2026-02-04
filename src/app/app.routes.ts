@@ -9,7 +9,7 @@ export const routes: Routes = [
     {
         path:'',
         component:RecorderComponent,
-        canActivate:[authGuard]
+          canActivate:[authGuard]  
     },
       {
         path:'recordings',

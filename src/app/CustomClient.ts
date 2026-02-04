@@ -17,7 +17,7 @@ export class CustomClient implements IHttpClient {
       method: httpRequest.method,
       headers: headers,
       body: httpRequest.body,
-      credentials: 'include' // Include cookies/credentials with cross-origin requests
+      //credentials: 'include' // Include cookies/credentials with cross-origin requests
     });
     
     // Read the response body
